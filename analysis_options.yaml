@@ -1,0 +1,8 @@
+include: package:flutter_lints/flutter.yaml
+linter:
+  rules:
+    unawaited_futures: true
+    prefer_const_constructors: true
+analyzer:
+  plugins:
+    - custom_lint
