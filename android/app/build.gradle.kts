@@ -1,18 +1,23 @@
+import java.util.Base64
+
 plugins {
-    id "com.android.application"
-    id "kotlin-android"
+    id("com.android.application")
+    id("kotlin-android")
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
-    id "dev.flutter.flutter-gradle-plugin"
+    id("dev.flutter.flutter-gradle-plugin")
 }
 
-def dartDefines = [:];
-if (project.hasProperty('dart-defines')) {
-    dartDefines = dartDefines + project.property('dart-defines')
-            .split(',')
-            .collectEntries { entry ->
-                def pair = new String(entry.decodeBase64(), 'UTF-8').split('=')
-                [(pair.first()): pair.last()]
-            }
+val dartDefines: Map<String, String> = if (project.hasProperty("dart-defines")) {
+    project.property("dart-defines").toString()
+        .split(",")
+        .map {
+            // Base64デコードして、"key=value"の形式に分割
+            val decoded = String(Base64.getDecoder().decode(it), Charsets.UTF_8)
+            val (key, value) = decoded.split("=")
+            key to value
+        }.toMap()
+} else {
+    emptyMap()
 }
 
 android {
@@ -21,12 +26,12 @@ android {
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
 
     defaultConfig {
@@ -38,14 +43,14 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
-        resValue "string", "google_map_api_key", "${dartDefines.GOOGLE_MAP_API_KEY}"
+        resValue("string", "google_map_api_key", dartDefines["GOOGLE_MAP_API_KEY"] ?: "")
     }
 
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.debug
+            signingConfig = signingConfigs.getByName("debug")
         }
     }
 }
