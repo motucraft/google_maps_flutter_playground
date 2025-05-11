@@ -12,12 +12,19 @@ import 'package:flutter/widgets.dart';
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/gray.png
+  AssetGenImage get gray => const AssetGenImage('assets/images/gray.png');
+
   /// File path: assets/images/tokyo_dome.jpeg
   AssetGenImage get tokyoDome =>
       const AssetGenImage('assets/images/tokyo_dome.jpeg');
 
+  /// File path: assets/images/transparent.png
+  AssetGenImage get transparent =>
+      const AssetGenImage('assets/images/transparent.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [tokyoDome];
+  List<AssetGenImage> get values => [gray, tokyoDome, transparent];
 }
 
 class Assets {
