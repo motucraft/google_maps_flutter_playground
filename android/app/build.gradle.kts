@@ -23,7 +23,7 @@ val dartDefines: Map<String, String> = if (project.hasProperty("dart-defines")) 
 android {
     namespace = "jp.motucraft.google_maps_flutter_playground"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    ndkVersion = "27.0.12077973"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -105,9 +106,11 @@ class _PaintedMapView extends HookConsumerWidget {
 }
 
 class _MapAnnotationPainter extends HookConsumerWidget {
-  const _MapAnnotationPainter({required this.onFinish});
+  _MapAnnotationPainter({required this.onFinish});
 
   final VoidCallback onFinish;
+  final _devicePixelRatio =
+      PlatformDispatcher.instance.views.first.devicePixelRatio;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -226,7 +229,10 @@ class _MapAnnotationPainter extends HookConsumerWidget {
                                           canvasSize.height / 2;
 
                                       return ItemData(
-                                        position: Offset(absX, absY),
+                                        position: Offset(
+                                          absX * _devicePixelRatio,
+                                          absY * _devicePixelRatio,
+                                        ),
                                         item: bytes,
                                       );
                                     }).toList();
