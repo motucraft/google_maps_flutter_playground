@@ -14,6 +14,17 @@ import 'package:flutter/widgets.dart';
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/chevron_up_blue.png
+  AssetGenImage get chevronUpBlue =>
+      const AssetGenImage('assets/images/chevron_up_blue.png');
+
+  /// File path: assets/images/chevron_up_red.png
+  AssetGenImage get chevronUpRed =>
+      const AssetGenImage('assets/images/chevron_up_red.png');
+
+  /// File path: assets/images/pin.png
+  AssetGenImage get pin => const AssetGenImage('assets/images/pin.png');
+
   /// File path: assets/images/tokyo_dome.jpeg
   AssetGenImage get tokyoDome =>
       const AssetGenImage('assets/images/tokyo_dome.jpeg');
@@ -23,7 +34,13 @@ class $AssetsImagesGen {
       const AssetGenImage('assets/images/transparent.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [tokyoDome, transparent];
+  List<AssetGenImage> get values => [
+    chevronUpBlue,
+    chevronUpRed,
+    pin,
+    tokyoDome,
+    transparent,
+  ];
 }
 
 class Assets {

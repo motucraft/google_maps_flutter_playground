@@ -22,9 +22,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: CurrentLocationPolyline(),
-    );
+    return const MaterialApp(home: CurrentLocationPolyline());
   }
 }
 
@@ -84,11 +82,7 @@ class CenterWidget extends ConsumerWidget {
         return Positioned(
           left: centerPoint.x - 28,
           top: centerPoint.y - 56,
-          child: const Icon(
-            Icons.add_location,
-            color: Colors.red,
-            size: 56,
-          ),
+          child: const Icon(Icons.add_location, color: Colors.red, size: 56),
         );
       },
     );
@@ -273,7 +267,8 @@ Future<Position> _determinePosition() async {
   if (permission == LocationPermission.deniedForever) {
     // Permissions are denied forever, handle appropriately.
     return Future.error(
-        'Location permissions are permanently denied, we cannot request permissions.');
+      'Location permissions are permanently denied, we cannot request permissions.',
+    );
   }
 
   // When we reach here, permissions are granted and we can

@@ -26,9 +26,7 @@ class _AddEditTextPageState extends State<AddEditTextPage> {
         children: [
           GestureDetector(
             onTap: () => Navigator.pop(context),
-            child: Container(
-              color: Colors.transparent,
-            ),
+            child: Container(color: Colors.transparent),
           ),
           Positioned.fill(
             child: Align(
