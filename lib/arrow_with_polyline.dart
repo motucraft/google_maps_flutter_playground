@@ -370,7 +370,7 @@ class ArrowPolylinesNotifier extends _$ArrowPolylinesNotifier {
               if (p.polylineId.value == next) {
                 return p.copyWith(colorParam: const Color(0xFF0400FF));
               }
-              return p;
+              return p.copyWith(colorParam: const Color(0xFFFF0000));
             }).toSet();
       }
     });
@@ -441,7 +441,7 @@ class ArrowMarkersNotifier extends _$ArrowMarkersNotifier {
               if (marker.markerId.value == next) {
                 return marker.copyWith(iconParam: chevronUpBlue);
               }
-              return marker;
+              return marker.copyWith(iconParam: chevronUpRed);
             }).toSet();
       }
     });
