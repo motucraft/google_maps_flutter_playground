@@ -10,9 +10,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: ShakingMarkerSample(),
-    );
+    return const MaterialApp(home: ShakingMarkerSample());
   }
 }
 
@@ -21,9 +19,9 @@ class ShakingMarkerSample extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final animationController =
-        useAnimationController(duration: const Duration(milliseconds: 200))
-          ..repeat(reverse: true);
+    final animationController = useAnimationController(
+      duration: const Duration(milliseconds: 200),
+    )..repeat(reverse: true);
 
     final animation = useMemoized(
       () => Tween(begin: -10.0, end: 10.0).animate(
@@ -32,8 +30,9 @@ class ShakingMarkerSample extends HookWidget {
       [],
     );
 
-    final devicePixelRatio =
-        useMemoized(() => MediaQuery.devicePixelRatioOf(context));
+    final devicePixelRatio = useMemoized(
+      () => MediaQuery.devicePixelRatioOf(context),
+    );
     final icon = useFuture(
       useMemoized(() async {
         debugPrint('toBitmapDescriptor called');
@@ -55,17 +54,20 @@ class ShakingMarkerSample extends HookWidget {
           builder: (context, child) {
             debugPrint('builder');
             final data = icon.data;
-            final markers = data == null
-                ? <Marker>{}
-                : {
-                    Marker(
-                      markerId: const MarkerId('shakingMarker'),
-                      position:
-                          const LatLng(35.65859614560881, 139.74542643554068),
-                      icon: data,
-                      rotation: animation.value,
-                    ),
-                  };
+            final markers =
+                data == null
+                    ? <Marker>{}
+                    : {
+                      Marker(
+                        markerId: const MarkerId('shakingMarker'),
+                        position: const LatLng(
+                          35.65859614560881,
+                          139.74542643554068,
+                        ),
+                        icon: data,
+                        rotation: animation.value,
+                      ),
+                    };
 
             return GoogleMap(
               initialCameraPosition: const CameraPosition(
